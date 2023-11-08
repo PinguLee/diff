@@ -2,7 +2,7 @@ import express from 'express';
 import http from 'http';
 import bodyParser from 'body-parser';
 import routes from './routes/routes.js';
-import diffLogic from './model/diff-logic.js';
+
 
 const app = express();
 const port = 8080;
@@ -10,8 +10,6 @@ const port = 8080;
 app.use(bodyParser.json());
 app.use(express.static('public'));
 app.use('/', routes);
-
-diffLogic('./data/fromDB-data.json' , './data/differences.json');
 
 const server = http.createServer(app);
 server.listen(port, () => {
