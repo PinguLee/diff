@@ -1,4 +1,4 @@
-import fs from 'fs';
+import { writeFile } from 'fs';
 
 // JSON 데이터를 파일에 쓰는 함수
 export function writeJSONFile(filePath, data) {
@@ -7,7 +7,7 @@ export function writeJSONFile(filePath, data) {
     const jsonData = JSON.stringify(data, null, 2); // null, 2 는 들여쓰기를 위한 옵션
 
     // 파일에 쓰기
-    fs.writeFile(filePath, jsonData, 'utf8', (err) => {
+    writeFile(filePath, jsonData, 'utf8', (err) => {
       if (err) {
         reject(err);
         return;
@@ -16,3 +16,4 @@ export function writeJSONFile(filePath, data) {
     });
   });
 }
+export { writeJSONFile };
