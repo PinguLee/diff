@@ -15,7 +15,6 @@ document.getElementById('loginForm').addEventListener('submit', (event) => {
   })
     .then(response => response.json())
     .then(data => {
-      // 로그인 결과 처리
       if (data.userType === 'admin') {
         alert('관리자로 로그인되었습니다.');
         // 관리자 페이지로 리디렉션 또는 필요한 작업 수행

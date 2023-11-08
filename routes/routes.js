@@ -14,8 +14,8 @@ router.get('/', (req, res) => {
  
 router.post('/login', (req, res) => {
   const { id, pw } = req.body;
-  const adminDBPath = path.join(__dirname, '..', 'data', 'adminDB.json');
   const userDBPath = path.join(__dirname, '..', 'data', 'userDB.json');
+  const adminDBPath = path.join(__dirname, '..', 'data', 'adminDB.json');
 
   const userType = diffLogic(id, pw, userDBPath, adminDBPath);
   res.send(userType);
