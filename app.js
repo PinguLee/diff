@@ -2,6 +2,7 @@ import express from 'express';
 import http from 'http';
 import bodyParser from 'body-parser';
 import routes from './routes/routes.js';
+import diffLogic from './model/diff-logic.js';
 
 const app = express();
 const port = 8080;
