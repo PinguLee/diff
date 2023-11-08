@@ -20,11 +20,11 @@ router.post('/login', (req, res) => {
   diffLogic(id, pw, userDBPath, adminDBPath)
     .then((userType) => {
       if (userType === 'admin') {
-        res.send({ userType: 'admin' }); // 클라이언트에게 관리자임을 알림
+        res.send({ userType: 'admin' });
       } else if (userType === 'user') {
-        res.send({ userType: 'user' }); // 클라이언트에게 유저임을 알림
+        res.send({ userType: 'user' });
       } else {
-        res.send({ userType: 'not_found' }); // 클라이언트에게 ID가 없음을 알림
+        res.send({ userType: 'notfound' });
       }
     })
     .catch((error) => {
