@@ -1,4 +1,4 @@
-document.getElementById('loginForm').addEventListener('submit', function(event) {
+document.getElementById('loginForm').addEventListener('submit', (event) => {
   event.preventDefault(); // 폼 기본 동작 방지
 
   const data = {

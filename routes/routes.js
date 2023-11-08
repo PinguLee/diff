@@ -18,7 +18,7 @@ router.post('/login', (req, res) => {
   const userDBPath = path.join(__dirname, '..', 'data', 'userDB.json');
 
   const userType = diffLogic(id, pw, userDBPath, adminDBPath);
-  res.send(userType); // 클라이언트에게 로그인 결과를 보냄
+  res.send(userType);
 });
 
 export default router;
