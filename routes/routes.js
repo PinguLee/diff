@@ -1,6 +1,6 @@
 import express from 'express';
 import path from 'path';
-import diffLogic from '../model/diff-logic.js';
+import checkLogin from '../model/auth.js';
 import { fileURLToPath } from 'url';
 
 const router = express.Router();
@@ -12,25 +12,22 @@ router.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
 });
  
-router.post('/login', (req, res) => {
+router.post('/login', async (req, res) => {
   const { id, pw } = req.body;
-  const userDBPath = path.join(__dirname, '..', 'data', 'userDB.json');
-  const adminDBPath = path.join(__dirname, '..', 'data', 'adminDB.json');
 
-  diffLogic(id, pw, userDBPath, adminDBPath)
-    .then((userType) => {
-      if (userType === 'admin') {
-        res.send({ userType: 'admin' });
-      } else if (userType === 'user') {
-        res.send({ userType: 'user' });
-      } else {
-        res.send({ userType: 'notfound' });
-      }
-    })
-    .catch((error) => {
-      res.status(500).send({ error: 'Internal Server Error' });
-    });
+  try {
+    const userType = await checkLogin(id, pw);
+
+    if (userType === 'admin') {
+      res.send({ userType: 'admin' });
+    } else if (userType === 'user') {
+      res.send({ userType: 'user' });
+    } else {
+      res.send({ userType: 'newUser' });
+    }
+  } catch (error) {
+    res.status(500).send({ error: 'Internal Server Error' });
+  }
 });
-
 
 export default router;
