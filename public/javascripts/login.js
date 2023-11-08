@@ -21,8 +21,7 @@ document.getElementById('loginForm').addEventListener('submit', (event) => {
       } else if (data.userType === 'user') {
         window.location.href = '/user';
       } else {
-        alert('계정이 존재하지 않아 자동 회원가입 처리했습니다.');
-        window.location.href = '/user';
+        alert('계정이 존재하지 않아 자동 회원가입 처리했습니다. 다시 로그인해주세요.');
       }
     })
     .catch(error => console.error('에러 발생:', error));
