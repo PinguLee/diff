@@ -1,18 +1,23 @@
 import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import diffLogic from '../model/diff-logic.js';
+
 const router = express.Router();
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 router.get('/', (req, res) => {
-  res.sendFile('index.html', { root: 'public' });
+  res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
 });
 
 router.post('/login', (req, res) => {
-  const { username, password } = req.body;
+  const { id, pw } = req.body;
+  const adminDBPath = '../data/adminDB.json';
+  const userDBPath = '../data/userDB.json';
 
-  if (username === 'user' && password === 'pass') {
-    res.send('로그인 성공!');
-  } else {
-    res.send('아이디 또는 비밀번호가 잘못되었습니다.');
-  }
+  diffLogic(id, pw, adminDBPath, userDBPath);
 });
 
 export default router;
