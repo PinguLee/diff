@@ -6,19 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>로그인</title>
   <link rel="stylesheet" href="./stylesheets/style.css">
-  <script src="./javascripts/script.js"></script>
+  <script src="./javascripts/login.js" defer></script>
 </head>
 
 <body>
   <div id="root">
     <div class="login-container">
-      <form class="login-form">
-        <input type="text" placeholder="아이디" required>
-        <input type="password" placeholder="비밀번호" required>
-        <button type="submit">로그인</button>
+      <form id="loginForm" class="login-form"> <!-- 폼 추가 -->
+        <input id="idInput" class="login-text" type="text" placeholder="아이디" required>
+        <input id="pwInput" class="login-text" type="password" placeholder="비밀번호" required>
+        <input id="submitButton" type="submit" class="login-button" value="로그인">
       </form>
     </div>
   </div>
-</body>
-
 </html>
