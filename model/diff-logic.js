@@ -1,3 +1,5 @@
+import { writeJSONFile } from "./module/write-json.js";
+import { compareData } from "./module/compare-data.js";
 
 /**
  * 
@@ -10,6 +12,8 @@ export default function(inputJSONPath, outputJSONPath) {
   if (!inputJSONPath.endsWith('.json') || !outputJSONPath.endsWith('.json')) {
     throw new Error(`매개변수 ${inputJSONPath}, ${outputJSONPath}는 json 파일이 아닙니다.`);
   }
+  inputStringified === outputStringified;
+
   let result = {};
   /**
    * ? Q. JSON 파일을 아래의 5, 6번에 해당하는 로직 작성 후 JSON으로 저장
@@ -23,6 +27,9 @@ export default function(inputJSONPath, outputJSONPath) {
    * * 6. 다른 단어가 무엇인지 저장
    * * 7. 리턴을 통해 결과값을 전달
    */
+
+  const inputStringified = JSON.stringify(inputJSONData);
+  const outputStringified = JSON.stringify(outputJSONData);
 
   return result;
 }
