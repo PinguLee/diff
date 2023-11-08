@@ -1,6 +1,18 @@
-import diffLogic from "./model/diff-logic.js";
+import express from 'express';
+import http from 'http';
+import bodyParser from 'body-parser';
+import routes from './routes/routes.js';
 
-const inputJSONPath = './data/fromDB-data.json';
-const outputJSONPath = './data/differences.json';
+const app = express();
+const port = 8080;
 
-diffLogic(inputJSONPath , outputJSONPath);
+app.use(bodyParser.json());
+app.use(express.static('public'));
+app.use('/', routes);
+
+diffLogic('./data/fromDB-data.json' , './data/differences.json');
+
+const server = http.createServer(app);
+server.listen(port, () => {
+  console.log(`http://localhost:${port}`);
+});
