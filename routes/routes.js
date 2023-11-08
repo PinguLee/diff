@@ -11,7 +11,7 @@ const __dirname = path.dirname(__filename);
 router.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
 });
-
+ 
 router.post('/login', (req, res) => {
   const { id, pw } = req.body;
   const adminDBPath = path.join(__dirname, '..', 'data', 'adminDB.json');
