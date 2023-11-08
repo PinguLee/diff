@@ -1,7 +1,7 @@
 import express from 'express';
 import path from 'path';
-import { fileURLToPath } from 'url';
 import diffLogic from '../model/diff-logic.js';
+import { fileURLToPath } from 'url';
 
 const router = express.Router();
 
@@ -14,10 +14,11 @@ router.get('/', (req, res) => {
 
 router.post('/login', (req, res) => {
   const { id, pw } = req.body;
-  const adminDBPath = '../data/adminDB.json';
-  const userDBPath = '../data/userDB.json';
+  const adminDBPath = path.join(__dirname, '..', 'data', 'adminDB.json');
+  const userDBPath = path.join(__dirname, '..', 'data', 'userDB.json');
 
-  diffLogic(id, pw, adminDBPath, userDBPath);
+  const userType = diffLogic(id, pw, userDBPath, adminDBPath);
+  res.send(userType); // 클라이언트에게 로그인 결과를 보냄
 });
 
 export default router;
