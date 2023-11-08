@@ -1,17 +1,13 @@
 import express from 'express';
 import path from 'path';
 import checkLogin from '../model/auth.js';
-import { fileURLToPath } from 'url';
 
 const router = express.Router();
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 router.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
- 
+
 router.post('/login', async (req, res) => {
   const { id, pw } = req.body;
 
@@ -26,7 +22,7 @@ router.post('/login', async (req, res) => {
       res.send({ userType: 'newUser' });
     }
   } catch (error) {
-    res.status(500).send({ error: 'Internal Server Error' });
+    res.status(500).send({ error: 'Authentication process failed.' });
   }
 });
 
